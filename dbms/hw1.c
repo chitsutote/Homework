@@ -1,3 +1,11 @@
+/*************************
+Student ID : F74992231
+Name: Wei-Cheng Ling
+compile: gcc -o hw1 hw1.c -lm
+function: complement a deap ,read number from input file,deap,in, 
+          and output the deap into deap.out
+****************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -34,7 +42,7 @@ int main(){
 	file = fopen("deap.out","w");
 	
 	for( i = 2 ; i <= count+1 ; i++){
-		fprintf(file,"Deap[%d] : %d\n",i,deap[i]);
+		fprintf(file,"%d\n",deap[i]);
 	}
 	fclose(file);
 	return 0;
@@ -64,14 +72,14 @@ void insert(int input, int pos){
 			
 			height++;
 		}
-		printf("Now height %d\n:",height);
-	    //Check insert position is left or right
+		//printf("Now height %d\n:",height);
+	    //Check insert position is in left tree or right tree
 		int direction = (pow(2,height)*3/2); 
 		if( pos < direction ){ //insert left tree node
 			
 			halfheight = height / 2;
 			corpos = pos + pow(2,halfheight);
-			printf("L POS: %d CORPOS: %d direc %d\n" ,pos,corpos,direction);
+		//printf("L POS: %d CORPOS: %d direc %d\n" ,pos,corpos,direction);
 			//corresponding node in right tree is not exist
 			if( deap[corpos] == -1){ 
 			    if( deap[ corpos/2] < deap[pos]){
@@ -80,17 +88,8 @@ void insert(int input, int pos){
 					deap[pos] = temp;
 					//heapify
 					heapify(pos,1);
+					heapify(corpos/2,2);
 				}
-			}else if(deap[corpos] != -1){ //exist
-			    if( deap[ corpos] < deap[pos]){
-					temp = deap[ corpos ];
-					deap[corpos] = deap[pos];
-					deap[pos] = temp;
-					//heapify
-					//********......
-					//.......
-				}
-			
 			}
 
 		}else if( pos >= direction ){//insert right tree node
@@ -98,13 +97,14 @@ void insert(int input, int pos){
 			halfheight = height / 2;
 			corpos = pos - pow(2,halfheight);
 			
-			printf("R  POS: %d CORPOS: %d direc %d\n" ,pos,corpos,direction);
+		//printf("R  POS: %d CORPOS: %d direc %d\n" ,pos,corpos,direction);
 			if( deap[pos] < deap[corpos]){
 					temp = deap[ corpos ];
 					deap[corpos] = deap[pos];
 					deap[pos] = temp;
-				    //heapify right
-					heapify(pos ,2);
+				    //heapify 
+					heapify(pos,2);
+					heapify(corpos,1);
 			}
 
 		}
@@ -116,7 +116,7 @@ void insert(int input, int pos){
 int heapify(int pos , int direction ){
 
 	int temp;
- 	int parent_pos=0;
+ 	int parent_pos=0; //Parent node posistion
 	parent_pos = pos/2;
 
 	if(parent_pos == 1) return;
