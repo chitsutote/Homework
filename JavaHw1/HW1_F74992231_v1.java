@@ -115,18 +115,16 @@ public class HW1_F74992231_v1{
 	public void showDistinctElement(){
 		HashMap<String,Integer>list = new HashMap<String,Integer>();
 
-		//list.put(test[0],1);
+		list.put(test[0],1);
 
 		System.out.print("第一個數字集合的distinct結果:");
-		
-		for(int i = 0; i<length; i++){
+		System.out.print(elements[0]);
+
+		for(int i = 1; i<length; i++){
 			
 			if(list.get(test[i]) ==null){
 				list.put(test[i],1);
-				System.out.print(elements[i]);
-				if( i != (length-1) ){
-					System.out.print(",");
-				}
+				System.out.print(","+elements[i]);
 			}
 				if( i == (length-1) ){
 					System.out.print("\n");
@@ -145,11 +143,26 @@ public class HW1_F74992231_v1{
 				return false;
 			}
 	}
-/*
-	public boolean subSet(HW1_F74992231_v1 s){
-	
-	}
 
+	public boolean subSet(HW1_F74992231_v1 s){
+
+		if( length > s.length ){
+			return false;
+		}else{
+			for(int i = 0;i<length;i++){
+				for(int j=0; j<s.length;j++){
+					if( elements[i] == s.elements[j]){
+						break;
+					}else if( j== s.length -1 && elements[i] != s.elements[j]){
+				        		return false;
+					}
+					
+				}
+			}
+		}
+		return true;
+	}
+/*
 	public HW1_F74992231_v1 union(HW1_F74992231_v1 s){
 	
 	}
@@ -212,5 +225,14 @@ public class HW1_F74992231_v1{
 			}else{
 				System.out.println("第一個數字集合與第二個數字集合是否相同:false");
 			}
+
+		//subset
+			if( list1.subSet(list2) == true ){
+				System.out.println("第一個數字集合是否為第二個數字集合的子集合:true");
+			}
+			else{
+				System.out.println("第一個數字集合是否為第二個數字集合的子集合:false");
+			}
+			
 	}
 }
