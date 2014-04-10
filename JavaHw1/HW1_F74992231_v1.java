@@ -83,11 +83,20 @@ public class HW1_F74992231_v1{
 			return false;
 		}
 	}
-/*
-	public int getMaximalElement(){
-	
-	}
 
+	public int getMaximalElement(){
+		int temp = elements[0] ;
+		int max = 0;
+
+		for(int i=1; i<length; i++){
+			if( temp < elements[i]){
+				temp = elements[i];
+			}
+		}
+		max = temp;
+		return max;
+	}
+/*
 	public void reverse(){
 	
 	}
@@ -149,6 +158,9 @@ public class HW1_F74992231_v1{
 			System.out.print("第一個數字集合是否都為偶數:");
 			System.out.println("true");
 		}
-
+		
+		//Maximum
+			System.out.print("第一個數字集合中最大的數字:");
+			System.out.println(list1.getMaximalElement());
 	}
 }
