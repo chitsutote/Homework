@@ -19,8 +19,8 @@ public class HW1_F74992231_v1{
     //constructor to get input and record
 	public HW1_F74992231_v1(String input){
 		
-		System.out.println(input);
-		System.out.println("printed out all input");
+		//System.out.println(input);
+		//System.out.println("printed out all input");
 
 		test = input.split(",");
 		
@@ -168,8 +168,9 @@ public class HW1_F74992231_v1{
 		HashMap<Integer,Integer>list = new HashMap<Integer,Integer>();
 		HW1_F74992231_v1 temp;
 		int count = 0;
+
 		
-		for(int i = 1; i< length;i++){
+		for(int i = 0; i< length;i++){
 			if(list.get(elements[i]) == null){
 				list.put(elements[i],elements[i]);
 				count++;
@@ -194,11 +195,38 @@ public class HW1_F74992231_v1{
 		return temp;
 	}
 
-/*
-	public HW1_F74992231_V1 intersection(HW1_F74992231_V1 s){
+
+	public HW1_F74992231_v1 intersection(HW1_F74992231_v1 s){
 			
+		HashMap<Integer,Integer>list = new HashMap<Integer,Integer>();
+		HW1_F74992231_v1 temp;
+		int count = 0;
+		
+		for(int i = 0; i< length;i++){
+			for(int j = 0 ;j < s.length;j++){
+		    	if( elements[i] == s.elements[j]){
+					if(list.get(elements[i]) == null){
+						list.put(elements[i],elements[i]);
+						count++;
+					}
+				}	
+			
+			}
+			
+		}
+
+		
+		temp = new HW1_F74992231_v1();
+		temp.length = count;
+		temp.elements = new int[count];
+		int i=0;
+		for(Object key : list.keySet()){
+			temp.elements[i]=list.get(key);
+			i++;
+		}
+		return temp;
 	}
-*/
+
 	public static void main(String args[]){
 
 		HW1_F74992231_v1 list1 = new HW1_F74992231_v1(args[0]);
@@ -268,6 +296,16 @@ public class HW1_F74992231_v1{
 		System.out.print(union.elements[0]);
 		for(int i = 1; i < union.length;i++){
 			System.out.print(","+union.elements[i]);
+		}
+			System.out.print("\n");
+		
+		//intersection
+		
+		HW1_F74992231_v1 intersec = list1.intersection(list2);
+		System.out.print("第一個數字集合交集第二個數字集合:");
+		System.out.print(intersec.elements[0]);
+		for(int i = 1; i < intersec.length;i++){
+			System.out.print(","+intersec.elements[i]);
 		}
 			System.out.print("\n");
 
