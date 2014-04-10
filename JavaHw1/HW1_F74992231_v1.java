@@ -1,6 +1,7 @@
 import java.io.*;
 import java.lang.Math;
 import java.util.HashMap;
+import java.util.*;
 
 public class HW1_F74992231_v1{
 
@@ -28,7 +29,7 @@ public class HW1_F74992231_v1{
 			String text = test[i];
 			int temp = Integer.parseInt(text);
 			elements[i] = temp;
-			System.out.println(temp);
+//			System.out.println(temp);
 		}
 		length = elements.length;
 		//System.out.println(test[0]);
@@ -135,11 +136,16 @@ public class HW1_F74992231_v1{
 	    
 	}
 
-/*
-	public boolean equals(HW1_F74992231_v1 s){
-	
-	}
 
+	public boolean equals(HW1_F74992231_v1 s){
+			
+			if(Arrays.equals( elements,s.elements ) ){
+				return true;
+			}else{
+				return false;
+			}
+	}
+/*
 	public boolean subSet(HW1_F74992231_v1 s){
 	
 	}
@@ -153,9 +159,9 @@ public class HW1_F74992231_v1{
 	}
 */
 	public static void main(String args[]){
-		HW1_F74992231_v1 one = new HW1_F74992231_v1();
 
 		HW1_F74992231_v1 list1 = new HW1_F74992231_v1(args[0]);
+		HW1_F74992231_v1 list2 = new HW1_F74992231_v1(args[1]);
         
 		//size
 		int size = list1.size();
@@ -199,5 +205,12 @@ public class HW1_F74992231_v1{
  
         //Show Distinct
 			list1.showDistinctElement();
+
+		//Check equal
+			if( list1.equals(list2) ){
+				System.out.println("第一個數字集合與第二個數字集合是否相同:true");
+			}else{
+				System.out.println("第一個數字集合與第二個數字集合是否相同:false");
+			}
 	}
 }
