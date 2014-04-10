@@ -162,13 +162,41 @@ public class HW1_F74992231_v1{
 		}
 		return true;
 	}
-/*
+
 	public HW1_F74992231_v1 union(HW1_F74992231_v1 s){
 	
+		HashMap<Integer,Integer>list = new HashMap<Integer,Integer>();
+		HW1_F74992231_v1 temp;
+		int count = 0;
+		
+		for(int i = 1; i< length;i++){
+			if(list.get(elements[i]) == null){
+				list.put(elements[i],elements[i]);
+				count++;
+			}	
+		}
+
+		for(int i = 0; i< s.length;i++){
+			if(list.get(s.elements[i]) == null){
+				list.put(s.elements[i],s.elements[i]);
+				count++;
+			}	
+		}
+		
+		temp = new HW1_F74992231_v1();
+		temp.length = count;
+		temp.elements = new int[count];
+		int i=0;
+		for(Object key : list.keySet()){
+			temp.elements[i]=list.get(key);
+			i++;
+		}
+		return temp;
 	}
 
+/*
 	public HW1_F74992231_V1 intersection(HW1_F74992231_V1 s){
-	
+			
 	}
 */
 	public static void main(String args[]){
@@ -233,6 +261,17 @@ public class HW1_F74992231_v1{
 			else{
 				System.out.println("第一個數字集合是否為第二個數字集合的子集合:false");
 			}
-			
+		
+		//Union
+		HW1_F74992231_v1 union = list1.union(list2);
+		System.out.print("第一個數字集合聯集第二個數字集合:");
+		System.out.print(union.elements[0]);
+		for(int i = 1; i < union.length;i++){
+			System.out.print(","+union.elements[i]);
+		}
+			System.out.print("\n");
+
+		
+
 	}
 }
