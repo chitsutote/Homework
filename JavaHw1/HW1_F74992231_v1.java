@@ -96,11 +96,20 @@ public class HW1_F74992231_v1{
 		max = temp;
 		return max;
 	}
-/*
-	public void reverse(){
-	
-	}
 
+	public void reverse(){
+       System.out.print("第一個數字集合顛倒輸出:");
+	   
+	   for(int i= (length -1); i >=0; i--){
+	   		System.out.print(elements[i]);
+	 		if(i == 0){
+				System.out.print("\n");
+			}else{
+				System.out.print(",");
+			}
+	   }
+	}
+/*
 	public void showDistinctElement(){
 	
 	}
@@ -162,5 +171,10 @@ public class HW1_F74992231_v1{
 		//Maximum
 			System.out.print("第一個數字集合中最大的數字:");
 			System.out.println(list1.getMaximalElement());
+		
+		//Reverse
+			list1.reverse();
+
+
 	}
 }
