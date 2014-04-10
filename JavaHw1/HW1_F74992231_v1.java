@@ -1,5 +1,6 @@
 import java.io.*;
 import java.lang.Math;
+import java.util.HashMap;
 
 public class HW1_F74992231_v1{
 
@@ -109,11 +110,32 @@ public class HW1_F74992231_v1{
 			}
 	   }
 	}
-/*
+
 	public void showDistinctElement(){
-	
+		HashMap<String,Integer>list = new HashMap<String,Integer>();
+
+		//list.put(test[0],1);
+
+		System.out.print("第一個數字集合的distinct結果:");
+		
+		for(int i = 0; i<length; i++){
+			
+			if(list.get(test[i]) ==null){
+				list.put(test[i],1);
+				System.out.print(elements[i]);
+				if( i != (length-1) ){
+					System.out.print(",");
+				}
+			}
+				if( i == (length-1) ){
+					System.out.print("\n");
+				}
+		}
+		
+	    
 	}
 
+/*
 	public boolean equals(HW1_F74992231_v1 s){
 	
 	}
@@ -174,7 +196,8 @@ public class HW1_F74992231_v1{
 		
 		//Reverse
 			list1.reverse();
-
-
+ 
+        //Show Distinct
+			list1.showDistinctElement();
 	}
 }
