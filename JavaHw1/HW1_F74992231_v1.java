@@ -69,11 +69,21 @@ public class HW1_F74992231_v1{
 		}	
 		return flag;
 	}
-/*
-	public boolean isEvennumber(){
-	
-	}
 
+	public boolean isEvennumber(){
+		int count = 0;
+		for(int i=0; i<length; i++){
+			if( (elements[i] % 2) == 0){
+				count++;
+			}
+		}
+		if( count == length){
+			return true;
+		}else{
+			return false;
+		}
+	}
+/*
 	public int getMaximalElement(){
 	
 	}
@@ -107,11 +117,13 @@ public class HW1_F74992231_v1{
 
 		HW1_F74992231_v1 list1 = new HW1_F74992231_v1(args[0]);
         
+		//size
 		int size = list1.size();
 		boolean isEmpty = list1.isEmpty();
 		System.out.print("第一個數字集合長度:");
 		System.out.println(size);
 		
+		//isEmpty
 		if(isEmpty == true){
 			System.out.print("第一個數字集合是否為空集合:");
 			System.out.println("true");
@@ -120,6 +132,7 @@ public class HW1_F74992231_v1{
 			System.out.println("false");
 		}
 		
+		//Prime number
 		if( list1.isPnumber() == false ){
 			System.out.print("第一個數字集合是否都為質數:");
 			System.out.println("false");
@@ -127,6 +140,15 @@ public class HW1_F74992231_v1{
 			System.out.print("第一個數字集合是否都為質數:");
 			System.out.println("true");
 		}
-	
+		
+		//Event number
+		if( list1.isEvennumber() == false ){
+			System.out.print("第一個數字集合是否都為偶數:");
+			System.out.println("false");
+		}else{
+			System.out.print("第一個數字集合是否都為偶數:");
+			System.out.println("true");
+		}
+
 	}
 }
