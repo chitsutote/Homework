@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.Math;
 
 public class HW1_F74992231_v1{
 
@@ -45,11 +46,30 @@ public class HW1_F74992231_v1{
 			return false;
 		}
 	}
-/*
-	public boolean isPnumber(){
-	
-	}
 
+	public boolean isPnumber(){
+		boolean flag = false;
+		int count = 0;
+
+		for(int i=0; i< length; i++){
+			
+			for(int j = 1; j< Math.sqrt(elements[i]) ; j++){
+				if( (elements[i] % j) == 0){
+					count++;	
+				}else{
+		
+				}
+			}
+			if(count <= 2){
+				flag = true;
+			}else{
+				flag = false;
+				break;
+			}
+		}	
+		return flag;
+	}
+/*
 	public boolean isEvennumber(){
 	
 	}
@@ -85,18 +105,27 @@ public class HW1_F74992231_v1{
 	public static void main(String args[]){
 		HW1_F74992231_v1 one = new HW1_F74992231_v1();
 
-		HW1_F74992231_v1 two = new HW1_F74992231_v1(args[0]);
+		HW1_F74992231_v1 list1 = new HW1_F74992231_v1(args[0]);
         
-		int size = two.size();
-		boolean isEmpty = two.isEmpty();
+		int size = list1.size();
+		boolean isEmpty = list1.isEmpty();
 		System.out.print("第一個數字集合長度:");
 		System.out.println(size);
+		
 		if(isEmpty == true){
 			System.out.print("第一個數字集合是否為空集合:");
 			System.out.println("true");
 		}else{
 			System.out.print("第一個數字集合是否為空集合:");
 			System.out.println("false");
+		}
+		
+		if( list1.isPnumber() == false ){
+			System.out.print("第一個數字集合是否都為質數:");
+			System.out.println("false");
+		}else{
+			System.out.print("第一個數字集合是否都為質數:");
+			System.out.println("true");
 		}
 	
 	}
