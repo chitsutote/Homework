@@ -50,6 +50,9 @@ public class HW1_F74992231_v1{
 	}
 
 	public boolean isPnumber(){
+		if(length == 0){
+			return false;
+		}
 		boolean flag = false;
 		int count = 0;
 
@@ -73,6 +76,9 @@ public class HW1_F74992231_v1{
 	}
 
 	public boolean isEvennumber(){
+		if(length == 0){
+			return false;
+		}
 		int count = 0;
 		for(int i=0; i<length; i++){
 			if( (elements[i] % 2) == 0){
@@ -87,6 +93,9 @@ public class HW1_F74992231_v1{
 	}
 
 	public int getMaximalElement(){
+		if(length == 0){
+			return 0;
+		}
 		int temp = elements[0] ;
 		int max = 0;
 
@@ -136,6 +145,9 @@ public class HW1_F74992231_v1{
 
 
 	public boolean equals(HW1_F74992231_v1 s){
+		if(length == 0){
+			return false;
+		}
 			
 			if(Arrays.equals( elements,s.elements ) ){
 				return true;
@@ -145,6 +157,9 @@ public class HW1_F74992231_v1{
 	}
 
 	public boolean subSet(HW1_F74992231_v1 s){
+		if(length == 0){
+			return true;
+		}
 
 		if( length > s.length ){
 			return false;
@@ -197,6 +212,9 @@ public class HW1_F74992231_v1{
 
 
 	public HW1_F74992231_v1 intersection(HW1_F74992231_v1 s){
+		if(length == 0){
+			return null;
+		}
 			
 		HashMap<Integer,Integer>list = new HashMap<Integer,Integer>();
 		HW1_F74992231_v1 temp;
@@ -267,8 +285,11 @@ public class HW1_F74992231_v1{
 		
 		//Maximum
 			System.out.print("第一個數字集合中最大的數字:");
+			if( list1.getMaximalElement() == 0){
+			
+			}else{
 			System.out.println(list1.getMaximalElement());
-		
+			}
 		//Reverse
 			list1.reverse();
  
