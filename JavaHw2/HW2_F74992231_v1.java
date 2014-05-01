@@ -25,12 +25,13 @@ abstract class hero{
 
 class hero1 extends hero{
 	
-	private int temp;
+	private int temp=0;
+	int lucky =0;
 	Random rdm = new Random();
 
 	public hero1(){
 		
-		 
+		HP(); 
 		hp = rdm.nextInt(100)+20;
 		mp= rdm.nextInt(100)+35;
 		def= rdm.nextInt(30)+1;
@@ -42,18 +43,23 @@ class hero1 extends hero{
 	}
 
 	public int HP(){
+		lucky +=3;
 		return hp;
 	}
 	public int MP(){
+		lucky +=3;
 		return mp;
 	}
 	public int DEF(){
+		lucky +=3;
 		return def;
 	}
 	public int ATK(){
+		lucky +=3;
 		return atk;
 	}
 	public boolean SKILL(){
+		lucky +=3;
 		dice = rdm.nextInt(100)+1;
 		if(dice % 2 == 0){
 			return true;
@@ -80,7 +86,8 @@ class hero1 extends hero{
 
 class hero2 extends hero{
 	
-	private int temp;
+	int lucky = 1;
+	private int temp=0;
 	Random rdm = new Random();
 	
 	public hero2(){
@@ -97,18 +104,23 @@ class hero2 extends hero{
 	}
 
 	public int HP(){
+		lucky +=6;
 		return hp;
 	}
 	public int MP(){
+		lucky +=6;
 		return mp;
 	}
 	public int DEF(){
+		lucky +=6;
 		return def;
 	}
 	public int ATK(){
+		lucky +=6;
 		return atk;
 	}
 	public boolean SKILL(){
+		lucky +=6;
 		dice = rdm.nextInt(100)+1;
 		if(dice % 5 == 0){
 			return true;
@@ -134,8 +146,9 @@ class hero2 extends hero{
 }
 
 class hero3 extends hero{
-	
-	private int temp;
+
+	int lucky = 0;
+	private int temp=0;
 	Random rdm = new Random();
 
 	public hero3(){
@@ -152,18 +165,23 @@ class hero3 extends hero{
 	}
 
 	public int HP(){
+		lucky +=9;
 		return hp;
 	}
 	public int MP(){
+		lucky +=9;
 		return mp;
 	}
 	public int DEF(){
+		lucky +=9;
 		return def;
 	}
 	public int ATK(){
+		lucky +=9;
 		return atk;
 	}
 	public boolean SKILL(){
+		lucky +=9;
 		dice = rdm.nextInt(100)+1;
 		if(dice % 7 == 0){
 			return true;
@@ -286,10 +304,11 @@ public class HW2_F74992231_v1{
 		boss.detail();
 
 
+
 		System.out.println("============Battle Start=============");
         
 		
-		int rotation = 0;
+		int rotation = 1;
 		Random rdm = new Random();
 		 
 
@@ -302,13 +321,13 @@ public class HW2_F74992231_v1{
 
 		while( HeroA.HP() > 0 && boss.HP() > 0){
 		
-			rotation = rdm.nextInt(10)+3;
+	//		rotation = rdm.nextInt(10)+3;
 
 			System.out.println("Round"+HeroA.round);
 
 			if( rotation %2 == 1){//hero attack first
 				//Hero part
-				if( HeroA.MP() > HeroA.skillmp ){
+				if( HeroA.MP() >= HeroA.skillmp ){
 					if( HeroA.SKILL() ){
 
 						System.out.print("Cloud 使用技能("+HeroA.skill+")攻擊力:"+HeroA.skillatk+" ");
@@ -352,7 +371,7 @@ public class HW2_F74992231_v1{
                 }
 
 				//Boss part
-				if( boss.MP() > boss.skillmp ){
+				if( boss.MP() >= boss.skillmp ){
 					if( boss.SKILL() ){
 
 						System.out.print("Doraemon 使用技能("+boss.skill+")攻擊力:"+boss.skillatk+" ");
@@ -396,7 +415,7 @@ public class HW2_F74992231_v1{
 
 			}else if( rotation %2 == 0){//boss attack first
 				//boss part
-				if( boss.MP() > boss.skillmp ){
+				if( boss.MP() >= boss.skillmp ){
 					if( boss.SKILL() ){
 
 						System.out.print("Doraemon 使用技能("+boss.skill+")攻擊力:"+boss.skillatk+" ");
@@ -438,7 +457,7 @@ public class HW2_F74992231_v1{
 								
                 }
 				//Hero part
-				if( HeroA.MP() > HeroA.skillmp ){
+				if( HeroA.MP() >= HeroA.skillmp ){
 					if( HeroA.SKILL() ){
 
 						System.out.print("Cloud 使用技能("+HeroA.skill+")攻擊力:"+HeroA.skillatk+" ");
@@ -483,6 +502,7 @@ public class HW2_F74992231_v1{
 			}
 
 			HeroA.round++;
+			rotation ++;
 		}
 
 		System.out.println("  ");
@@ -497,13 +517,13 @@ public class HW2_F74992231_v1{
 
 		while( HeroB.HP() > 0 && boss.HP() > 0){
 		
-			rotation = rdm.nextInt(10)+3;
+//			rotation = rdm.nextInt(10)+3;
 
 			System.out.println("Round"+HeroB.round);
 
 			if( rotation %2 == 1){//hero attack first
 				//Hero part
-				if( HeroB.MP() > HeroB.skillmp ){
+				if( HeroB.MP() >= HeroB.skillmp ){
 					if( HeroA.SKILL() ){
 
 						System.out.print("Zack 使用技能("+HeroB.skill+")攻擊力:"+HeroB.skillatk+" ");
@@ -547,7 +567,7 @@ public class HW2_F74992231_v1{
                 }
 
 				//Boss part
-				if( boss.MP() > boss.skillmp ){
+				if( boss.MP() >= boss.skillmp ){
 					if( boss.SKILL() ){
 
 						System.out.print("Doraemon 使用技能("+boss.skill+")攻擊力:"+boss.skillatk+" ");
@@ -591,7 +611,7 @@ public class HW2_F74992231_v1{
 
 			}else if( rotation %2 == 0){//boss attack first
 				//boss part
-				if( boss.MP() > boss.skillmp ){
+				if( boss.MP() >= boss.skillmp ){
 					if( boss.SKILL() ){
 
 						System.out.print("Doraemon 使用技能("+boss.skill+")攻擊力:"+boss.skillatk+" ");
@@ -633,7 +653,7 @@ public class HW2_F74992231_v1{
 								
                 }
 				//Hero part
-				if( HeroB.MP() > HeroB.skillmp ){
+				if( HeroB.MP() >= HeroB.skillmp ){
 					if( HeroB.SKILL() ){
 
 						System.out.print("Zack 使用技能("+HeroB.skill+")攻擊力:"+HeroB.skillatk+" ");
@@ -678,6 +698,7 @@ public class HW2_F74992231_v1{
 			}
 
 			HeroB.round++;
+			rotation ++;
 		}
 		//End
 		
@@ -695,13 +716,13 @@ public class HW2_F74992231_v1{
 
 		while( HeroC.HP() > 0 && boss.HP() > 0){
 		
-			rotation = rdm.nextInt(10)+3;
+//			rotation = rdm.nextInt(10)+3;
 
 			System.out.println("Round"+HeroC.round);
 
 			if( rotation %2 == 1){//hero attack first
 				//Hero part
-				if( HeroC.MP() > HeroC.skillmp ){
+				if( HeroC.MP() >= HeroC.skillmp ){
 					if( HeroA.SKILL() ){
 
 						System.out.print("Sephiroth 使用技能("+HeroC.skill+")攻擊力:"+HeroC.skillatk+" ");
@@ -745,7 +766,7 @@ public class HW2_F74992231_v1{
                 }
 
 				//Boss part
-				if( boss.MP() > boss.skillmp ){
+				if( boss.MP() >= boss.skillmp ){
 					if( boss.SKILL() ){
 
 						System.out.print("Doraemon 使用技能("+boss.skill+")攻擊力:"+boss.skillatk+" ");
@@ -789,7 +810,7 @@ public class HW2_F74992231_v1{
 
 			}else if( rotation %2 == 0){//boss attack first
 				//boss part
-				if( boss.MP() > boss.skillmp ){
+				if( boss.MP() >= boss.skillmp ){
 					if( boss.SKILL() ){
 
 						System.out.print("Doraemon 使用技能("+boss.skill+")攻擊力:"+boss.skillatk+" ");
@@ -831,7 +852,7 @@ public class HW2_F74992231_v1{
 								
                 }
 				//Hero part
-				if( HeroC.MP() > HeroC.skillmp ){
+				if( HeroC.MP() >= HeroC.skillmp ){
 					if( HeroC.SKILL() ){
 
 						System.out.print("Sephiroth 使用技能("+HeroC.skill+")攻擊力:"+HeroC.skillatk+" ");
@@ -876,6 +897,7 @@ public class HW2_F74992231_v1{
 			}
 
 			HeroC.round++;
+			rotation ++;
 		}
 		//End	
 		
