@@ -302,7 +302,7 @@ public class HW2_F74992231_v1{
 
 		while( HeroA.HP() > 0 && boss.HP() > 0){
 		
-			rotation = rdm.nextInt(2)+1;
+			rotation = rdm.nextInt(10)+3;
 
 			System.out.println("Round"+HeroA.round);
 
@@ -497,7 +497,7 @@ public class HW2_F74992231_v1{
 
 		while( HeroB.HP() > 0 && boss.HP() > 0){
 		
-			rotation = rdm.nextInt(2)+1;
+			rotation = rdm.nextInt(10)+3;
 
 			System.out.println("Round"+HeroB.round);
 
@@ -695,7 +695,7 @@ public class HW2_F74992231_v1{
 
 		while( HeroC.HP() > 0 && boss.HP() > 0){
 		
-			rotation = rdm.nextInt(2)+1;
+			rotation = rdm.nextInt(10)+3;
 
 			System.out.println("Round"+HeroC.round);
 
