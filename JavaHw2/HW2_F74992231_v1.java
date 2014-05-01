@@ -368,8 +368,26 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Cloud 普通攻擊"+HeroA.atk+" ");
 
+						if( (HeroA.atk - boss.def) > 0){
+							boss.hp -= (HeroA.atk - boss.def);
+							if(boss.hp <= 0){
+								boss.hp = 0;
+							}
+						}
+						
+						System.out.println(boss.toString());
+						
+						if( boss.hp == 0){
+							System.out.println("Cloud win,Doraemon failure");
+							HeroA.result = true;
+							break;
+						 }
+					}
+                
 				//Boss part
 				if( boss.MP() >= boss.skillmp ){
 					if( boss.SKILL() ){
@@ -411,7 +429,24 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Doraemon 普通攻擊"+boss.atk+" ");
+
+						if( (boss.atk - HeroA.def) > 0){
+							HeroA.hp -= (boss.atk - HeroA.def);
+							if(HeroA.hp <= 0){
+								HeroA.hp = 0;
+							}
+						}
+						
+						System.out.println(HeroA.toString());
+						
+						if( HeroA.hp == 0){
+							System.out.println("Cloud failure,Doraemon win");
+							break;
+						 }
+					}
 
 			}else if( rotation %2 == 0){//boss attack first
 				//boss part
@@ -455,7 +490,24 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Doraemon 普通攻擊"+boss.atk+" ");
+
+						if( (boss.atk - HeroA.def) > 0){
+							HeroA.hp -= (boss.atk - HeroA.def);
+							if(HeroA.hp <= 0){
+								HeroA.hp = 0;
+							}
+						}
+						
+						System.out.println(HeroA.toString());
+						
+						if( HeroA.hp == 0){
+							System.out.println("Cloud failure,Doraemon win");
+							break;
+						 }
+					}
 				//Hero part
 				if( HeroA.MP() >= HeroA.skillmp ){
 					if( HeroA.SKILL() ){
@@ -498,7 +550,25 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Cloud 普通攻擊"+HeroA.atk+" ");
+
+						if( (HeroA.atk - boss.def) > 0){
+							boss.hp -= (HeroA.atk - boss.def);
+							if(boss.hp <= 0){
+								boss.hp = 0;
+							}
+						}
+						
+						System.out.println(boss.toString());
+						
+						if( boss.hp == 0){
+							System.out.println("Cloud win,Doraemon failure");
+							HeroA.result = true;
+							break;
+						 }
+					}
 			}
 
 			HeroA.round++;
@@ -564,7 +634,25 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Zack 普通攻擊"+HeroB.atk+" ");
+
+						if( (HeroB.atk - boss.def) > 0){
+							boss.hp -= (HeroB.atk - boss.def);
+							if(boss.hp <= 0){
+								boss.hp = 0;
+							}
+						}
+						
+						System.out.println(boss.toString());
+						
+						if( boss.hp == 0){
+							System.out.println("Zack win,Doraemon failure");
+							HeroB.result = true;
+							break;
+						 }
+					}
 
 				//Boss part
 				if( boss.MP() >= boss.skillmp ){
@@ -607,7 +695,24 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Doraemon 普通攻擊"+boss.atk+" ");
+
+						if( (boss.atk - HeroB.def) > 0){
+							HeroB.hp -= (boss.atk - HeroB.def);
+							if(HeroB.hp <= 0){
+								HeroB.hp = 0;
+							}
+						}
+						
+						System.out.println(HeroB.toString());
+						
+						if( HeroB.hp == 0){
+							System.out.println("Zack failure,Doraemon win");
+							break;
+						 }
+					}
 
 			}else if( rotation %2 == 0){//boss attack first
 				//boss part
@@ -694,7 +799,25 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Zack 普通攻擊"+HeroB.atk+" ");
+
+						if( (HeroB.atk - boss.def) > 0){
+							boss.hp -= (HeroB.atk - boss.def);
+							if(boss.hp <= 0){
+								boss.hp = 0;
+							}
+						}
+						
+						System.out.println(boss.toString());
+						
+						if( boss.hp == 0){
+							System.out.println("Zack win,Doraemon failure");
+							HeroB.result = true;
+							break;
+						 }
+					}
 			}
 
 			HeroB.round++;
@@ -763,7 +886,25 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Sephiroth 普通攻擊"+HeroC.atk+" ");
+
+						if( (HeroC.atk - boss.def) > 0){
+							boss.hp -= (HeroC.atk - boss.def);
+							if(boss.hp <= 0){
+								boss.hp = 0;
+							}
+						}
+						
+						System.out.println(boss.toString());
+						
+						if( boss.hp == 0){
+							System.out.println("Sephiroth win,Doraemon failure");
+							HeroC.result = true;
+							break;
+						 }
+					}
 
 				//Boss part
 				if( boss.MP() >= boss.skillmp ){
@@ -806,7 +947,24 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Doraemon 普通攻擊"+boss.atk+" ");
+
+						if( (boss.atk - HeroC.def) > 0){
+							HeroC.hp -= (boss.atk - HeroC.def);
+							if(HeroC.hp <= 0){
+								HeroC.hp = 0;
+							}
+						}
+						
+						System.out.println(HeroC.toString());
+						
+						if( HeroC.hp == 0){
+							System.out.println("Sephiroth failure,Doraemon win");
+							break;
+						 }
+					}
 
 			}else if( rotation %2 == 0){//boss attack first
 				//boss part
@@ -850,7 +1008,24 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Doraemon 普通攻擊"+boss.atk+" ");
+
+						if( (boss.atk - HeroC.def) > 0){
+							HeroC.hp -= (boss.atk - HeroC.def);
+							if(HeroC.hp <= 0){
+								HeroC.hp = 0;
+							}
+						}
+						
+						System.out.println(HeroC.toString());
+						
+						if( HeroC.hp == 0){
+							System.out.println("Sephiroth failure,Doraemon win");
+							break;
+						 }
+					}
 				//Hero part
 				if( HeroC.MP() >= HeroC.skillmp ){
 					if( HeroC.SKILL() ){
@@ -893,7 +1068,25 @@ public class HW2_F74992231_v1{
 						 }
 					}
 								
-                }
+                }else{
+						
+						System.out.print("Sephiroth 普通攻擊"+HeroC.atk+" ");
+
+						if( (HeroC.atk - boss.def) > 0){
+							boss.hp -= (HeroC.atk - boss.def);
+							if(boss.hp <= 0){
+								boss.hp = 0;
+							}
+						}
+						
+						System.out.println(boss.toString());
+						
+						if( boss.hp == 0){
+							System.out.println("Sephiroth win,Doraemon failure");
+							HeroC.result = true;
+							break;
+						 }
+					}
 			}
 
 			HeroC.round++;
