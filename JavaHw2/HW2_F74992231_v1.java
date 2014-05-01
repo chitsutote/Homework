@@ -6,6 +6,8 @@ abstract class hero{
 	public int mp=0;
 	public int def=0;
 	public int atk=0;
+	public int round=1;
+	public boolean result = false;
 
 	public int dice = 0;
 
@@ -30,7 +32,7 @@ class hero1 extends hero{
 		
 		 
 		hp = rdm.nextInt(100)+20;
-		mp= rdm.nextInt(100)+30;
+		mp= rdm.nextInt(100)+35;
 		def= rdm.nextInt(30)+1;
 		atk= rdm.nextInt(100)+1;
 		
@@ -71,6 +73,9 @@ class hero1 extends hero{
 	public String toString(){
 		return "Cloud"+" 體力剩下"+this.hp+" 防禦"+this.def+" 魔力"+this.mp;
 	}
+	public String toString(int a){
+		return "Cloud 共花了"+this.round+"回合擊敗魔王獲得勝利";
+	}
 }
 
 class hero2 extends hero{
@@ -82,7 +87,7 @@ class hero2 extends hero{
 		
 		 
 		hp = rdm.nextInt(100)+20;
-		mp= rdm.nextInt(100)+20;
+		mp= rdm.nextInt(100)+25;
 		def= rdm.nextInt(30)+1;
 		atk= rdm.nextInt(100)+1;
 		
@@ -123,6 +128,9 @@ class hero2 extends hero{
 	public String toString(){
 		return "Zack"+" 體力剩下"+this.hp+" 防禦"+this.def+" 魔力"+this.mp;
 	}
+	public String toString(int a){
+		return "Zack 共花了"+this.round+"回合擊敗魔王獲得勝利";
+	}
 }
 
 class hero3 extends hero{
@@ -134,7 +142,7 @@ class hero3 extends hero{
 		
 		 
 		hp = rdm.nextInt(100)+20;
-		mp= rdm.nextInt(100)+15;
+		mp= rdm.nextInt(100)+20;
 		def= rdm.nextInt(30)+1;
 		atk= rdm.nextInt(100)+1;
 
@@ -173,24 +181,29 @@ class hero3 extends hero{
 		System.out.println("技能("+skill+") 對對手造成體力"+skillatk+"的傷害"+"/消耗魔力"+skillmp);
 	}
 	public String toString(){
-		return "Sephiroth"+" 體力剩下"+this.hp+" 防禦"+this.def+" 魔力"+this.mp;
+			return "Sephiroth"+" 體力剩下"+this.hp+" 防禦"+this.def+" 魔力"+this.mp;
+	}
+	public String toString(int a){
+		return "Sephiroth 共花了"+this.round+"回合擊敗魔王獲得勝利";
 	}
 }
 
 class boss extends hero{
 	
 	public int temp=0;
+	public int tempmp=0;
 	Random rdm = new Random();
 
 	public boss(){
 		
 		 
 		hp = rdm.nextInt(100)+55;
-		mp= rdm.nextInt(85)+40;
+		mp= rdm.nextInt(85)+45;
 		def= rdm.nextInt(30)+1;
 		atk= rdm.nextInt(100)+1;
 
 		temp = hp;
+		tempmp = mp;
 
 		skill = "任意門";
 		skillatk = 70;
@@ -237,6 +250,8 @@ public class HW2_F74992231_v1{
 	public static void main(String[] args){
 	
 		int count =0;
+		int MinRound = 0;
+		int winner = 0;
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("產生的英雄數:");
@@ -246,6 +261,8 @@ public class HW2_F74992231_v1{
 
 			if( count < 3) {
 				System.out.println("好像有點少喔!! 再多一點");
+			}else if(count > 3){
+				System.out.println("太多了啦");				
 			}else{
 				break;
 			}
@@ -263,28 +280,11 @@ public class HW2_F74992231_v1{
 				HeroC.detail();
 				System.out.println(" ");
 	
-	for(int i = 3 ; i <= count ; i++){
-			
-			if( (i % 3) == 1){
-				
-				hero1  HeroD = new hero1();
-				HeroD.detail();
-				System.out.println(" ");
-			}else if( (i % 3) == 2){
-				
-				hero2  HeroE = new hero2();   	
-				HeroE.detail();
-				System.out.println(" ");
-			}else if( (i % 3) == 0){
-			
-				hero3  HeroF = new hero3();
-				HeroF.detail();
-				System.out.println(" ");
-			}
-		}
+	
 		
 		boss boss = new boss();
 		boss.detail();
+
 
 		System.out.println("============Battle Start=============");
         
@@ -293,7 +293,6 @@ public class HW2_F74992231_v1{
 		Random rdm = new Random();
 		 
 
-		int round = 1;
 
 
 		//HeroA and boss
@@ -305,7 +304,7 @@ public class HW2_F74992231_v1{
 		
 			rotation = rdm.nextInt(2)+1;
 
-			System.out.println("Round"+round);
+			System.out.println("Round"+HeroA.round);
 
 			if( rotation %2 == 1){//hero attack first
 				//Hero part
@@ -326,6 +325,7 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp ==  0){
 							System.out.println("Cloud win,Doraemon failure");
+							HeroA.result = true;
 							break;
 						}
 					
@@ -344,6 +344,7 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp == 0){
 							System.out.println("Cloud win,Doraemon failure");
+							HeroA.result = true;
 							break;
 						 }
 					}
@@ -454,6 +455,8 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp ==  0){
 							System.out.println("Cloud win,Doraemon failure");
+							HeroA.result = true;
+							break;
 						}
 					
 					}else{
@@ -471,6 +474,7 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp == 0){
 							System.out.println("Cloud win,Doraemon failure");
+							HeroA.result = true;
 							break;
 						 }
 					}
@@ -478,15 +482,15 @@ public class HW2_F74992231_v1{
                 }
 			}
 
-			round++;
+			HeroA.round++;
 		}
 
 		System.out.println("  ");
 		System.out.println("  ");
 		System.out.println("  ");
 
-		round = 1;
 		boss.hp=boss.temp;
+		boss.mp=boss.tempmp;
 		//HeroB and boss
 		System.out.print("Doraemon 體力"+boss.hp+" 魔力"+boss.mp);
 		System.out.println(" Zack 體力"+HeroB.hp+" 魔力"+HeroB.mp);
@@ -495,7 +499,7 @@ public class HW2_F74992231_v1{
 		
 			rotation = rdm.nextInt(2)+1;
 
-			System.out.println("Round"+round);
+			System.out.println("Round"+HeroB.round);
 
 			if( rotation %2 == 1){//hero attack first
 				//Hero part
@@ -516,6 +520,7 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp ==  0){
 							System.out.println("Zack win,Doraemon failure");
+							HeroB.result = true;
 							break;
 						}
 					
@@ -534,6 +539,7 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp == 0){
 							System.out.println("Zack win,Doraemon failure");
+							HeroB.result = true;
 							break;
 						 }
 					}
@@ -644,6 +650,8 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp ==  0){
 							System.out.println("Zack win,Doraemon failure");
+							HeroB.result = true;
+							break;
 						}
 					
 					}else{
@@ -661,6 +669,7 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp == 0){
 							System.out.println("Zack win,Doraemon failure");
+							HeroB.result = true;
 							break;
 						 }
 					}
@@ -668,7 +677,7 @@ public class HW2_F74992231_v1{
                 }
 			}
 
-			round++;
+			HeroB.round++;
 		}
 		//End
 		
@@ -677,8 +686,9 @@ public class HW2_F74992231_v1{
 		System.out.println("  ");
 		System.out.println("  ");
 
-		round = 1;
+	
 		boss.hp=boss.temp;
+		boss.mp=boss.tempmp;
 		//HeroC and boss
 		System.out.print("Doraemon 體力"+boss.hp+" 魔力"+boss.mp);
 		System.out.println(" Sephiroth 體力"+HeroC.hp+" 魔力"+HeroC.mp);
@@ -687,7 +697,7 @@ public class HW2_F74992231_v1{
 		
 			rotation = rdm.nextInt(2)+1;
 
-			System.out.println("Round"+round);
+			System.out.println("Round"+HeroC.round);
 
 			if( rotation %2 == 1){//hero attack first
 				//Hero part
@@ -708,6 +718,7 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp ==  0){
 							System.out.println("Sephiroth win,Doraemon failure");
+							HeroC.result = true;
 							break;
 						}
 					
@@ -726,6 +737,7 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp == 0){
 							System.out.println("Sephiroth win,Doraemon failure");
+							HeroC.result = true;
 							break;
 						 }
 					}
@@ -836,6 +848,8 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp ==  0){
 							System.out.println("Sephiroth win,Doraemon failure");
+							HeroC.result = true;
+							break;
 						}
 					
 					}else{
@@ -853,6 +867,7 @@ public class HW2_F74992231_v1{
 						
 						if( boss.hp == 0){
 							System.out.println("Sephiroth win,Doraemon failure");
+							HeroC.result = true;
 							break;
 						 }
 					}
@@ -860,9 +875,39 @@ public class HW2_F74992231_v1{
                 }
 			}
 
-			round++;
+			HeroC.round++;
 		}
 		//End	
+		
+		if( HeroA.result == true){
+			MinRound = HeroA.round;
+			winner = 1;
+		}
+		
+		if( HeroB.result == true){
+			if( HeroB.round < MinRound || MinRound == 0){
+				MinRound = HeroB.round;
+				winner = 2;
+			}
+		}
+		if( HeroC.result == true){
+			if( HeroC.round < MinRound || MinRound == 0){
+				MinRound = HeroC.round;
+				winner = 3;
+			}
+		}
+
+		if( winner == 1 ){
+			System.out.println(" ");
+			System.out.println(HeroA.toString(1));
+		}else if( winner == 2){
+			System.out.println(" ");
+			System.out.println(HeroB.toString(1));
+		}else if( winner == 3){
+			System.out.println(" ");
+			System.out.println(HeroC.toString(1));
+		}
+
 	}
 
 }
