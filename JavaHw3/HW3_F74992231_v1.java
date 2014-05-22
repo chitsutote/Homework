@@ -1,4 +1,7 @@
 import java.util.*;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 abstract class hero{
 	
@@ -8,6 +11,36 @@ abstract class hero{
 	public int atk=0;
 	public int round=1;
 	public boolean result = false;
+	public int level = 1;
+	public int exp = 0;
+	public int LevelExp = 5;
+
+	public int dice = 0;
+
+	public String skill=null;
+	public int skillatk = 0;
+	public int skillmp = 0;
+
+
+	public abstract int HP();
+	public abstract int MP();
+	public abstract int DEF();
+	public abstract int ATK();
+	public abstract boolean SKILL();
+	public abstract int Level();
+	public abstract int Exp();
+}
+abstract class bossproto{
+	
+	public int hp=0;
+	public int mp=0;
+	public int def=0;
+	public int atk=0;
+	public int round=1;
+	public boolean result = false;
+	public int level = 1;
+	public int exp = 0;
+	public int LevelExp = 5;
 
 	public int dice = 0;
 
@@ -32,10 +65,10 @@ class hero1 extends hero{
 	public hero1(){
 		
 		HP(); 
-		hp = rdm.nextInt(100)+20;
-		mp= rdm.nextInt(100)+35;
-		def= rdm.nextInt(30)+1;
-		atk= rdm.nextInt(100)+1;
+		hp = rdm.nextInt(100)+300;
+		mp= rdm.nextInt(100)+200;
+		def= rdm.nextInt(30)+10;
+		atk= rdm.nextInt(100)+10;
 		
 		skill = "超究武神霸斬";
 		skillatk = 60;
@@ -67,6 +100,17 @@ class hero1 extends hero{
 			return false;
 		}
 	}
+	public int Level(){
+		if( exp == LevelExp){
+			level++;
+			exp = 0;
+			LevelExp +=5;
+		}
+		return level;
+	}
+	public int Exp(){
+		return exp;
+	}
 
 	public void detail(){
 		System.out.println("HeroA : Cloud");
@@ -85,7 +129,7 @@ class hero1 extends hero{
 }
 
 
-class boss extends hero{
+class boss extends bossproto{
 	
 	public int temp=0;
 	public int tempmp=0;
@@ -154,22 +198,17 @@ public class HW3_F74992231_v1{
 		System.out.println("產生的英雄數:");
 		
 		//	count = scanner.nextInt();
-
-	    	
-				hero1  HeroA = new hero1();
-				HeroA.detail();
-				System.out.println(" ");
-				
-			
-	
-	
 		
-		boss boss = new boss();
-		boss.detail();
+		//Declare hero
+		hero1  HeroA = new hero1();
+		HeroA.detail();
+		System.out.println(" ");
+		
+		//Declare the boss
+		//boss boss = new boss();
+		//boss.detail();
 
-
-
-		System.out.println("============Battle Start=============");
+		//System.out.println("============Battle Start=============");
         
 		
 		int rotation = 1;
@@ -180,268 +219,27 @@ public class HW3_F74992231_v1{
 
 		//HeroA and boss
 		
-		System.out.print("Doraemon 體力"+boss.hp+" 魔力"+boss.mp);
-		System.out.println(" Cloud 體力"+HeroA.hp+" 魔力"+HeroA.mp);
+		//System.out.print("Doraemon 體力"+boss.hp+" 魔力"+boss.mp);
+		//System.out.println(" Cloud 體力"+HeroA.hp+" 魔力"+HeroA.mp);
 
-		while( HeroA.HP() > 0 && boss.HP() > 0){
+		while( HeroA.hp > 0 ){				
+				//Declare the boss
+				boss boss = new boss();
+				boss.detail();
 		
-	//		rotation = rdm.nextInt(10)+3;
-
-			System.out.println("Round"+HeroA.round);
-
-			if( rotation %2 == 1){//hero attack first
-				//Hero part
-				if( HeroA.MP() >= HeroA.skillmp ){
-					if( HeroA.SKILL() ){
-
-						System.out.print("Cloud 使用技能("+HeroA.skill+")攻擊力:"+HeroA.skillatk+" ");
-						HeroA.mp -= HeroA.skillmp;
-
-						if( (HeroA.skillatk - boss.def) > 0){
-							boss.hp -= (HeroA.skillatk - boss.def);
-							if(boss.hp <= 0){
-								boss.hp = 0;
-							}
-						}
-						
-						System.out.println(boss.toString());
-						
-						if( boss.hp ==  0){
-							System.out.println("Cloud win,Doraemon failure");
-							HeroA.result = true;
-							break;
-						}
-					
-					}else{
-						
-						System.out.print("Cloud 普通攻擊"+HeroA.atk+" ");
-
-						if( (HeroA.atk - boss.def) > 0){
-							boss.hp -= (HeroA.atk - boss.def);
-							if(boss.hp <= 0){
-								boss.hp = 0;
-							}
-						}
-						
-						System.out.println(boss.toString());
-						
-						if( boss.hp == 0){
-							System.out.println("Cloud win,Doraemon failure");
-							HeroA.result = true;
-							break;
-						 }
-					}
-								
-                }else{
-						
-						System.out.print("Cloud 普通攻擊"+HeroA.atk+" ");
-
-						if( (HeroA.atk - boss.def) > 0){
-							boss.hp -= (HeroA.atk - boss.def);
-							if(boss.hp <= 0){
-								boss.hp = 0;
-							}
-						}
-						
-						System.out.println(boss.toString());
-						
-						if( boss.hp == 0){
-							System.out.println("Cloud win,Doraemon failure");
-							HeroA.result = true;
-							break;
-						 }
-					}
-                
-				//Boss part
-				if( boss.MP() >= boss.skillmp ){
-					if( boss.SKILL() ){
-
-						System.out.print("Doraemon 使用技能("+boss.skill+")攻擊力:"+boss.skillatk+" ");
-						boss.mp -= boss.skillmp;
-						if(boss.mp < 0 ) boss.mp = 0;
-
-						if( (boss.skillatk - HeroA.def) > 0){
-							HeroA.hp -= (boss.skillatk - HeroA.def);
-							if(HeroA.hp <= 0){
-								HeroA.hp = 0;
-							}
-						}
-						
-						System.out.println(HeroA.toString());
-						
-						if( HeroA.hp ==  0){
-							System.out.println("Cloud failure,Doraemon win");
-							break;
-						}
-					
-					}else{
-						
-						System.out.print("Doraemon 普通攻擊"+boss.atk+" ");
-
-						if( (boss.atk - HeroA.def) > 0){
-							HeroA.hp -= (boss.atk - HeroA.def);
-							if(HeroA.hp <= 0){
-								HeroA.hp = 0;
-							}
-						}
-						
-						System.out.println(HeroA.toString());
-						
-						if( HeroA.hp == 0){
-							System.out.println("Cloud failure,Doraemon win");
-							break;
-						 }
-					}
-								
-                }else{
-						
-						System.out.print("Doraemon 普通攻擊"+boss.atk+" ");
-
-						if( (boss.atk - HeroA.def) > 0){
-							HeroA.hp -= (boss.atk - HeroA.def);
-							if(HeroA.hp <= 0){
-								HeroA.hp = 0;
-							}
-						}
-						
-						System.out.println(HeroA.toString());
-						
-						if( HeroA.hp == 0){
-							System.out.println("Cloud failure,Doraemon win");
-							break;
-						 }
-					}
-
-			}else if( rotation %2 == 0){//boss attack first
-				//boss part
-				if( boss.MP() >= boss.skillmp ){
-					if( boss.SKILL() ){
-
-						System.out.print("Doraemon 使用技能("+boss.skill+")攻擊力:"+boss.skillatk+" ");
-						boss.mp -= boss.skillmp;
-						if(boss.mp < 0 ) boss.mp = 0;
-
-						if( (boss.skillatk - HeroA.def) > 0){
-							HeroA.hp -= (boss.skillatk - HeroA.def);
-							if(HeroA.hp <= 0){
-								HeroA.hp = 0;
-							}
-						}
-						
-						System.out.println(HeroA.toString());
-						
-						if( HeroA.hp ==  0){
-							System.out.println("Cloud failure,Doraemon win");
-							break;
-						}
-					
-					}else{
-						
-						System.out.print("Doraemon 普通攻擊"+boss.atk+" ");
-
-						if( (boss.atk - HeroA.def) > 0){
-							HeroA.hp -= (boss.atk - HeroA.def);
-							if(HeroA.hp <= 0){
-								HeroA.hp = 0;
-							}
-						}
-						
-						System.out.println(HeroA.toString());
-						
-						if( HeroA.hp == 0){
-							System.out.println("Cloud failure,Doraemon win");
-							break;
-						 }
-					}
-								
-                }else{
-						
-						System.out.print("Doraemon 普通攻擊"+boss.atk+" ");
-
-						if( (boss.atk - HeroA.def) > 0){
-							HeroA.hp -= (boss.atk - HeroA.def);
-							if(HeroA.hp <= 0){
-								HeroA.hp = 0;
-							}
-						}
-						
-						System.out.println(HeroA.toString());
-						
-						if( HeroA.hp == 0){
-							System.out.println("Cloud failure,Doraemon win");
-							break;
-						 }
-					}
-				//Hero part
-				if( HeroA.MP() >= HeroA.skillmp ){
-					if( HeroA.SKILL() ){
-
-						System.out.print("Cloud 使用技能("+HeroA.skill+")攻擊力:"+HeroA.skillatk+" ");
-						HeroA.mp -= HeroA.skillmp;
-
-						if( (HeroA.skillatk - boss.def) > 0){
-							boss.hp -= (HeroA.skillatk - boss.def);
-							if(boss.hp <= 0){
-								boss.hp = 0;
-							}
-						}
-						
-						System.out.println(boss.toString());
-						
-						if( boss.hp ==  0){
-							System.out.println("Cloud win,Doraemon failure");
-							HeroA.result = true;
-							break;
-						}
-					
-					}else{
-						
-						System.out.print("Cloud 普通攻擊"+HeroA.atk+" ");
-
-						if( (HeroA.atk - boss.def) > 0){
-							boss.hp -= (HeroA.atk - boss.def);
-							if(boss.hp <= 0){
-								boss.hp = 0;
-							}
-						}
-						
-						System.out.println(boss.toString());
-						
-						if( boss.hp == 0){
-							System.out.println("Cloud win,Doraemon failure");
-							HeroA.result = true;
-							break;
-						 }
-					}
-								
-                }else{
-						
-						System.out.print("Cloud 普通攻擊"+HeroA.atk+" ");
-
-						if( (HeroA.atk - boss.def) > 0){
-							boss.hp -= (HeroA.atk - boss.def);
-							if(boss.hp <= 0){
-								boss.hp = 0;
-							}
-						}
-						
-						System.out.println(boss.toString());
-						
-						if( boss.hp == 0){
-							System.out.println("Cloud win,Doraemon failure");
-							HeroA.result = true;
-							break;
-						 }
-					}
-			}
-
-			HeroA.round++;
-			rotation ++;
+				System.out.println("============Battle Start=============");
+		
+				//HeroA and boss
+		
+				System.out.print("Doraemon 體力"+boss.hp+" 魔力"+boss.mp);
+				System.out.println(" Cloud 體力"+HeroA.hp+" 魔力"+HeroA.mp);
+			
+		    HeroA.hp -=100;
 		}
 
 		System.out.println("  ");
 		System.out.println("  ");
 		System.out.println("  ");
 
-}
+ }
 }
