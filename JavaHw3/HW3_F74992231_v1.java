@@ -1,7 +1,10 @@
 import java.util.*;
+import java.io.*;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
+
 
 abstract class hero{
 	
@@ -113,12 +116,14 @@ class hero1 extends hero{
 	}
 
 	public void detail(){
+		System.out.println("LV: "+level);
 		System.out.println("HeroA : Cloud");
 		System.out.println("體力值"+hp);
 		System.out.println("魔力值"+mp);
 		System.out.println("攻擊"+atk);
 		System.out.println("防禦"+def);
 		System.out.println("技能("+skill+") 對對手造成體力"+skillatk+"的傷害"+"/消耗魔力"+skillmp);
+		
 	}
 	public String toString(){
 		return "Cloud"+" 體力剩下"+this.hp+" 防禦"+this.def+" 魔力"+this.mp;
@@ -190,52 +195,88 @@ public class HW3_F74992231_v1{
 
 	public static void main(String[] args){
 	
-		int count =0;
+		
 		int MinRound = 0;
 		int winner = 0;
 		Scanner scanner = new Scanner(System.in);
+		//check hero is create or noti
+		int start = 0;
+		int save = 0;
 		
-		System.out.println("產生的英雄數:");
+		System.out.println("new : 產生新英雄");
+		System.out.println("info : 英雄資訊");
+		System.out.println("batt : 開啟一場戰鬥");
+		System.out.println("save : 儲存");
+		System.out.println("load : 讀取");
+		System.out.println("exit : 離開");
+		System.out.println("help : 幫助");
 		
-		//	count = scanner.nextInt();
-		
-		//Declare hero
-		hero1  HeroA = new hero1();
-		HeroA.detail();
-		System.out.println(" ");
-		
-		//Declare the boss
-		//boss boss = new boss();
-		//boss.detail();
+		String command;
 
-		//System.out.println("============Battle Start=============");
-        
+		hero1 heroA = new hero1();
 		
-		int rotation = 1;
-		Random rdm = new Random();
+		while( true ){
+		
+			command = scanner.next();
+		
+			
+			if( command.equals("new") ){
+				System.out.println("A");
+				heroA = new hero1();
+				start = 1;
+				heroA.detail();
+			}else if( command.equals("info")){
+					if( start == 1){
+						System.out.println("B");
+						heroA.detail();
+					}
+					else{
+						System.out.println("請先創建英雄");
+					}
+			}else if( command.equals("batt") ){
+					if( start == 1){
+						System.out.println("c");
+					}
+					else{
+						System.out.println("請先創建英雄");
+					}
+			}else if( command.equals("save") ){
+					if( start == 1){
+						try{
+						FileWriter fw = new FileWriter("stat.txt");
+						fw.write(Integer.toString(heroA.level)+'\n');
+						fw.write(Integer.toString(heroA.hp)+'\n');
+						fw.write(Integer.toString(heroA.mp)+'\n');
+						fw.write(Integer.toString(heroA.atk)+'\n');
+						fw.write(Integer.toString(heroA.def)+'\n');
+						fw.close();
+						}
+						catch(Exception e){
+							e.printStackTrace();
+						}
+						save = 1;
+					}
+					else{
+						System.out.println("請先創建英雄");
+					}
+			}else if( command.equals("load")  ){
+					if( (start == 1) && (save == 1) ){
+						System.out.println("c");
+						heroA.detail();
+					}
+					else{
+						System.out.println("請先創建英雄或存檔");
+					}
+			}else if( command.equals("exit") ){
+						break;
+			}else if( command.equals("help") ){
+						System.out.println("Nothing");
+					}
+			
+		}	
+		
 		 
 
-
-
-		//HeroA and boss
-		
-		//System.out.print("Doraemon 體力"+boss.hp+" 魔力"+boss.mp);
-		//System.out.println(" Cloud 體力"+HeroA.hp+" 魔力"+HeroA.mp);
-
-		while( HeroA.hp > 0 ){				
-				//Declare the boss
-				boss boss = new boss();
-				boss.detail();
-		
-				System.out.println("============Battle Start=============");
-		
-				//HeroA and boss
-		
-				System.out.print("Doraemon 體力"+boss.hp+" 魔力"+boss.mp);
-				System.out.println(" Cloud 體力"+HeroA.hp+" 魔力"+HeroA.mp);
-			
-		    HeroA.hp -=100;
-		}
 
 		System.out.println("  ");
 		System.out.println("  ");
