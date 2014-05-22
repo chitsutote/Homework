@@ -250,6 +250,7 @@ public class HW3_F74992231_v1{
 						fw.write(Integer.toString(heroA.atk)+'\n');
 						fw.write(Integer.toString(heroA.def)+'\n');
 						fw.close();
+						System.out.println("存檔成功");
 						}
 						catch(Exception e){
 							e.printStackTrace();
@@ -261,8 +262,18 @@ public class HW3_F74992231_v1{
 					}
 			}else if( command.equals("load")  ){
 					if( (start == 1) && (save == 1) ){
-						System.out.println("c");
-						heroA.detail();
+						try{
+							FileReader fr = new FileReader("stat.txt");
+							BufferedReader br = new BufferedReader(fr);
+							heroA.level =Integer.valueOf(br.readLine());
+							heroA.hp =Integer.valueOf(br.readLine());
+							heroA.mp =Integer.valueOf(br.readLine());
+							heroA.atk =Integer.valueOf(br.readLine());
+							heroA.def =Integer.valueOf(br.readLine());
+						}
+						catch(Exception e){
+							e.printStackTrace();
+						}
 					}
 					else{
 						System.out.println("請先創建英雄或存檔");
