@@ -196,8 +196,7 @@ public class HW3_F74992231_v1{
 	public static void main(String[] args){
 	
 		
-		int MinRound = 0;
-		int winner = 0;
+		int rotation = 0;
 		Scanner scanner = new Scanner(System.in);
 		//check hero is create or noti
 		int start = 0;
@@ -221,13 +220,11 @@ public class HW3_F74992231_v1{
 		
 			
 			if( command.equals("new") ){
-				System.out.println("A");
 				heroA = new hero1();
 				start = 1;
 				heroA.detail();
 			}else if( command.equals("info")){
 					if( start == 1){
-						System.out.println("B");
 						heroA.detail();
 					}
 					else{
@@ -235,9 +232,42 @@ public class HW3_F74992231_v1{
 					}
 			}else if( command.equals("batt") ){
 					if( start == 1){
-						System.out.println("c");
-					}
-					else{
+						boss boss = new boss();
+						boss.detail();
+						
+						while( heroA.HP() > 0 && boss.HP() > 0){
+							
+							if( heroA.atk < boss.def){
+								boss.hp -=20;
+							}else{
+							
+								boss.hp -= (heroA.atk-boss.def);
+								if(boss.hp <=0 ){
+									boss.hp = 0;
+									System.out.println("Hero win");
+									break;
+								}
+
+							}
+
+							if( boss.atk < heroA.def){
+								heroA.hp -= 20;
+							}else{
+								
+								heroA.hp -= (boss.atk-heroA.def);
+								if(heroA.hp <=0){
+									System.out.println("Game over");
+									heroA.hp = 0;
+									break;
+								}
+
+							}
+						}
+                        //end of while
+						heroA.exp += 5;
+						heroA.Level();
+						heroA.detail();
+					}else{
 						System.out.println("請先創建英雄");
 					}
 			}else if( command.equals("save") ){
@@ -261,7 +291,7 @@ public class HW3_F74992231_v1{
 						System.out.println("請先創建英雄");
 					}
 			}else if( command.equals("load")  ){
-					if( (start == 1) && (save == 1) ){
+					if( (start == 1) ){
 						try{
 							FileReader fr = new FileReader("stat.txt");
 							BufferedReader br = new BufferedReader(fr);
