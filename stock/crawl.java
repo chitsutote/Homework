@@ -10,8 +10,10 @@ import org.jsoup.select.Elements;
 
 public class crawl{
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException{
 		
+		FileWriter fw = new FileWriter("StockValue.txt");
+	
 		//Stock code	    
 		String code = args[0];
 		//Query date
@@ -44,14 +46,21 @@ public class crawl{
 				count++;
 				String temp = item.next().text();
 				if( count > 9){
-					System.out.println("Number"+count+"  "+temp);
+					if( count % 9 == 1){
+						String MinGou = temp.replace("/","");
+						fw.write(MinGou+" ");
+					}else if( count % 9 == 7){
+						String value = temp;
+						fw.write(value+"\r\n");
+					}
 				}
 			}
 
 			}catch(IOException e){
 				System.out.println("Exception occured");
 			}
-
+			fw.flush();
+			fw.close();
 
 	}
 

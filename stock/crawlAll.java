@@ -27,7 +27,7 @@ public class crawlAll{
 				if( year[i].equals("2014") && month[j].equals("07")){
 					break;
 				}
-				System.out.println("year"+year[i]+"Month"+month[j]);
+				//System.out.println("year"+year[i]+"Month"+month[j]);
 				//Target url : Taiwan Stock Exchange
 				String url = "http://www.twse.com.tw/ch/trading/exchange/STOCK_DAY/genpage/Report"+year[i]+month[j]+"/"+year[i]+month[j]+"_F3_1_8_"+code+".php?STK_NO="+2498+"&myear="+year[i]+"&mmon="+month[j];
 				//Try crawl web information
@@ -50,6 +50,7 @@ public class crawlAll{
 							String MinGou = temp.replace("/","");
 							fw.write(MinGou+" ");
 						}else if( count % 9 == 7){
+							String value = temp;
 							fw.write(temp+"\r\n");
 						}
 					}
