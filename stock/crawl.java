@@ -12,19 +12,24 @@ public class crawl{
 	
 	public static void main(String[] args) throws IOException{
 		
-		FileWriter fw = new FileWriter("StockValue.txt");
-	
+		Scanner input = new Scanner(System.in);
+		
 		//Stock code	    
-		String code = args[0];
+		String code = input.nextLine();
 		//Query date
-		String date = args[1];
+		String date = input.nextLine();
 
-		System.out.println(code);
-		System.out.println(date);
+		
+		String FileName = "price_"+code+".txt";
+		FileWriter fw = new FileWriter(FileName);
+
 
 		String year = date.substring(0,4);
 		String month = date.substring(4,6);
 		String YearMonth = date.substring(0,6);
+
+		String MinGou = Integer.toString( (Integer.valueOf(year)-1911) );
+	
 
 
 				
@@ -47,8 +52,9 @@ public class crawl{
 				String temp = item.next().text();
 				if( count > 9){
 					if( count % 9 == 1){
-						String MinGou = temp.replace("/","");
-						fw.write(MinGou+" ");
+						String day = temp.replace(MinGou,year);
+
+						fw.write(day+" ");
 					}else if( count % 9 == 7){
 						String value = temp;
 						fw.write(value+"\r\n");

@@ -12,10 +12,12 @@ public class crawlAll{
 	
 	public static void main(String[] args) throws IOException{
 		
-		FileWriter fw = new FileWriter("AllStockValue.txt");
+		Scanner input = new Scanner(System.in);
+		String code = input.nextLine();
+		String FileName = "Allprice_"+code+".txt";
+
+		FileWriter fw = new FileWriter(FileName);
 	
-		//Stock code	    
-		String code = args[0];
 		String[] year = {"2011","2012","2013","2014"};
 		String[] month = {"01","02","03","04","05","06","07","08","09","10","11","12"};
 		
@@ -29,6 +31,7 @@ public class crawlAll{
 				}
 				//System.out.println("year"+year[i]+"Month"+month[j]);
 				//Target url : Taiwan Stock Exchange
+				String MinGou = Integer.toString( (Integer.valueOf(year[i])-1911) );
 				String url = "http://www.twse.com.tw/ch/trading/exchange/STOCK_DAY/genpage/Report"+year[i]+month[j]+"/"+year[i]+month[j]+"_F3_1_8_"+code+".php?STK_NO="+2498+"&myear="+year[i]+"&mmon="+month[j];
 				//Try crawl web information
 				try{
@@ -47,8 +50,8 @@ public class crawlAll{
 					String temp = item.next().text();
 					if( count > 9){
 						if( count % 9 == 1){
-							String MinGou = temp.replace("/","");
-							fw.write(MinGou+" ");
+							String day = temp.replace(MinGou,year[i]);
+							fw.write(day+" ");
 						}else if( count % 9 == 7){
 							String value = temp;
 							fw.write(temp+"\r\n");
