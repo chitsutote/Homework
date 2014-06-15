@@ -144,7 +144,6 @@ public class dbms{
 		Scanner input = new Scanner(System.in);
 		String command = input.nextLine();
 
-		System.out.println(command);
 		
 /*		System.out.println(command.indexOf("SELECT"));
 		System.out.println(command.indexOf("FROM"));
@@ -155,14 +154,28 @@ public class dbms{
 		FromIndex = command.indexOf("FROM");
 		WhereIndex = command.indexOf("WHERE");
 
-		String attributeList = command.substring(SelectIndex+7,FromIndex);
-		String tableList = command.substring(FromIndex+5,WhereIndex);
+		String attributeList = command.substring(SelectIndex+7,FromIndex-1);
+		String tableList = command.substring(FromIndex+5,WhereIndex-1);
 		String condition = command.substring(WhereIndex+6);
-		
 
 		System.out.println(attributeList);
 		System.out.println(tableList);
-		System.out.println(condition);
+		
+					for(i = 0; i < 19 ; i++){
+						System.out.println(field[i][0]);
+					}
+				
+
+			if(tableList.equals("FIELD")){
+				System.out.println("Fuck");
+				if(attributeList.equals("F_NAME")){
+					for(i = 0; i < 19 ; i++){
+						System.out.println(field[i][0]);
+					}
+				}
+			}
+		
+	
 	}
 
 }
